@@ -1,0 +1,22 @@
+Task: REQ1 implement, design, document and test the Lava zone and Warp Pipe
+Teammate responsible: Fadi Alailan
+
+Task: REQ2 implement, design, document and test Princess Peach, Bowser, Piranha Plant, and Flying Koopa
+Teammate responsible: Khor Jia Shin
+
+Task: REQ3 implement, design, document and test the Magical fountain
+Teammate responsible: Lim Hong Yee
+
+Task: REQ4 implement, design, document and test spawning the FireFlower(REQ4 part 1)
+Teammate responsible: Fadi Alailan
+
+Task: REQ4 implement, design, document and test the FireFlower and FireAttackAction(REQ4 part 2)
+Teammate responsible: Khor Jia Shin
+
+Task: REQ5 implement, design, document and test Speaking
+Teammate responsible: Lim Hong Yee
+
+
+I accept this WBA(Lim Hong Yee)
+I accept this WBA(Fadi Alailan)
+I accept this WBA(Khor Jia Shin)

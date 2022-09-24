@@ -1,0 +1,41 @@
+Resettable:
+    an interface for all resettable objects, if an object would react in someway to the game reset, then
+    it needs to implement this class
+
+
+ResetManager:
+    a singleton that manages a list of all Resettable objects in the game and can remove objects from the list
+    if they die,vanish or get used up before the game resets
+
+
+ResetGameAction:
+    this is an action that the player can use to reset the game, it inherits from Action since it is an action
+    the player can preform. It depends on ResetManager since it needs to call the run() method in order
+    to reset the game
+
+
+AttackAction:
+    now when an enemy becomes unconscious, they are removed from the reset manager.
+
+
+Enemy:
+    when the game resets all enemies must die, so when the game resets, each instance will kill itself
+
+
+HighGround:
+    when the player stands on a HighGround after eating a superstar, it turns to dirt, so if that current
+    instance of a HighGround happens to be Resettable, it needs to be cleaned up
+
+
+Tree:
+    a tree has a 50% chance to turn to dirt when resting, so it needs to be Resettable
+
+    why did you implement the die() method?
+    to follow the DRY principle
+
+Coin:
+    all coins disappear when the game resets, so it needs to be Resettable
+
+
+
+

@@ -1,0 +1,40 @@
+Design Rationale
+
+Newly created/modified classes with new relationships
+
+Coin(new)
+A class that extends Item. Used to represent the coins on the ground. Has a constructor that will initialise the value of the coin.
+
+Wallet(new)
+A new class to keep track of the amount of money that the player has.
+
+Toad(new)
+This is a class for the Toad actor that extends the actor class.
+
+BuyAction(new)
+ A class that extends Action class, in charge of selling items to the player
+
+InteractAction(new)
+Class that extends Action class, is in charge of having a conversation with the player. An action that will be called when player is at toad's surrounding
+
+Wrench, Super Mushroom and Power Star
+Added value to wrench, super mushroom and power star
+
+Properties of Coin and effects on picking coin up
+"The coin($) is the physical currency that an actor/buyer collects. A coin has an integer value (e.g., $5, $10, $20, or even $9001)."
+Whenever a player picks up an item, it will automatically be in the player's inventory, but for coin, we do not want it to be in the player's inventory. We want it to add to the player's wallet when it is picked up. Our implementation is, we are going to override the item's tick method and remove the coin that is picked up from the inventory and add it into the player's wallet.
+
+"Coins will spawn randomly from the Sapling (t) or from destroyed high grounds."
+    - Implemented in req2 and req5.
+
+"Collecting these coins will increase the buyer's wallet (credit/money)."
+When a player picks up a coin, it will automatically be added into the player's wallet. We are assuming that during the game, there will be only one player, so we used the singleton design pattern to create this wallet class. When a coin is picked up by the player, we remove the coin from the player's inventory, access the wallet and add coins to the wallet.
+
+"Using this money, buyers (i.e., a player) can buy the following items from Toad:,Wrench: $200,Super Mushroom: $400,Power Star: $600"
+. In this game, the ideal way to interact with the object is by attaching appropriate action to its corresponding object. Therefore, this action will have a dependency with Toad instead of Player. An action that will be called when the player is at Toad's surrounding.When a player wants to buy an item, Toad will check the player's wallet if it has sufficient balance to buy the item. If the player has sufficient balance, it will deduct the balance and add the item to the inventory. If it doesn't have sufficient balance, it will tell the player that it does not have enough money.
+"Toad (O) is a friendly actor, and he stands in the middle of the map (surrounded by brick Walls)."
+We add Toad manually in the application class as the specifications stated that we could add it manually.
+"You will have an action to speak with Toad. Toad will speak one sentence at a time randomly:"
+Toad has a dependency with InteractAction and BuyAction because Toad is the object that gives the other actor(Player) an action to buy and interact. Alternatively, we can create 3 separate BuyActions for Wrench, Power Star and Super Mushroom. However, doing so will require us to implement multiple methods that are the same inside different classes. This would violate the Don't Repeat Yourself(DRY) principle in object-oriented programming.  In this game, the ideal way to interact with the object is by attaching appropriate action to its corresponding object. Therefore, this action will have a dependency with Toad instead of Player. Toad will check the player's inventory if it contains a wrench. If it contains a wrench, it won't say the first phrase. If  player has the capability of invincibility, using the hasCapability method to check, it won't say the second phrase. If it contains both, it will only say the third and fourth phrase.
+
+

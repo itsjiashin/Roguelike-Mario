@@ -1,0 +1,11 @@
+FireFlower:
+    it inherits from ConsumableItems, since it can be consumed by the player
+
+Tree:
+    the tree's children (sapling, sprout and mature) when they grow, they have a chance
+    to spawn a fire flower, but because of DRY, I decided to make a function called
+    "attemptSpawnAFireFlower" in the tree class that is called by the children, so they
+    call it when growing making it so that they can spawn a fire flower, but they don't
+    know about its existence only the tree class does
+
+most of the requirement logic is in part 2, so the more interesting design decision are made there

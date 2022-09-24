@@ -1,0 +1,62 @@
+
+Enemy:
+    an abstract class that will be added in REQ3, added here for consistency
+
+HighGround:
+    an abstract class that will be added in REQ2, added here for consistency
+
+
+Tree:
+    Tree is an abstract class that is meant to be used to group the 3 main Tree types (Sapling, Sprout. Mature),
+    the main reasons for this class is to not violate the "Single Responsibility Principle" and to make the code
+    more organized. Trees are part of the terrain, so the Tree class inherits from Ground (HighGround in REQ2),
+    it depends on Location because we use the "tick" method, and it depends on GameMap because of it will
+    need to access the Location's GameMap. It depends on actor and item because its children will need to spawn these
+    objects
+
+    why did I remove the dependency on GameMap from Assignment 1?
+    it turned out that all the methods I need were in the Location class, so there was no need to use the
+    GameMap class
+
+    why did I remove the dependency on Item?
+    because only Sapling has a dependency on Item and not Sprout or Mature
+
+    why did I remove the dependency on Ground?
+    because the I noticed the class inherits from HighGround which inherits from Ground
+
+Sprout:
+    it is a class that inherits from Tree because it is one of the 3 stages of a Tree's life (the other 2 being
+    Sapling and Mature). It spawns Goomba ,so it depend on them, and it depends on Sapling because
+    it wil turn into one after 10 turns
+
+Sapling:
+    it is a class that inherits from Tree because it is one of the 3 stages of a Tree's life (the other 2 being
+    Sprout and Mature). It spawns Coins ,so it depends on them, and it depend on Mature because it wil
+    turn into one after 10 turns
+
+    why did I add a dependency on Item?
+    because sapling is the only one that makes use of Item to spawn Coins
+    but not the other tree type, so it was moved from Tree to Sapling
+
+Mature:
+    it is a class that inherits from Tree because it is one of the 3 stages of a Tree's life (the other 2 being
+    Sprout and Sapling). It depends on Koopa, because it spawns them, and it depends on Sprout because it will
+    spawn them every 5 turns in a random surrounding fertile ground, it depends on Dirt because it has a 20%
+    chance to turn into one each turn
+
+    Why did you implement the fertile ground system using a capability?
+    when I was thinking of how to implement the system, I came with 2 ideas at first:
+    a) make an interface called FertileGround and check if the current ground type is from that interface using instanceof
+    cons: we will be using instanceof which is a code smell
+    b) make an interface called FertileGround and a class called FertileGroundManager that keeps a List of all FertileGrounds
+    and can check if a ground is a FertileGround by looking at the list of FertileGrounds and checking if the current
+    ground is there
+    cons: has the complexity of O(n) where n is the number of FertileGrounds, this is bad since approach (a) has
+    a complexity O(1)
+
+    but then I realized that the Ground class supports capabilities, so I decided to add a capability called FERTILE
+    that we can check if a ground has it, and this way we don't use instanceof or sacrifice performance.
+
+Coin:
+    an Item that if collected gives the player money, it is an Item that can be picked up, so it seems natural
+    that it inherits from Item

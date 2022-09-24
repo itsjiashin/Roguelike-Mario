@@ -1,0 +1,49 @@
+WarpPipe:
+    the main class of the requirement it relies on the following classes for the following reasons:
+
+    HighGround (inherits): the assignment requires that the player has to jump to the WarpPipe, so
+    it inherits from HighGround
+
+    WirePipe (association): it has an association with itself because it needs to store a reference
+    to the WirePipe it will warp to
+
+    Location (dependency): the class need to warp to another WarpPipe outside the tick method, so we
+    can't access the location the tick method gives us, so we need store it and update it every tick instead.
+
+    ActionList (dependency): this because of the allowableActions function which we need to give the player
+    the advancedMoveAction
+
+    Actor (dependency): this is because of the allowableActions function which we need to give the player
+    the advancedMoveAction
+
+    advancedMoveAction (dependency): this action is needed to warp the player to the other WarpPipe while also
+    establishing a link with that WarpPipe
+
+    PiranhaPlant (dependency): not used in REQ1, will be explained in REQ2
+
+    Resettable (implements): not used in REQ1, will be explained in REQ2
+
+advancedMoveAction:
+    this is an action that is an upgrade of the game engine's MoveActorAction , where now it has the ability to
+    send a signal when executed (idea inspired from the godot game engine, a real game engine, though it can only
+    send one signal, unlike the godot game engine, where it can send as many as it likes).
+    the main reason that this class was added was because of the open-close principle (the O in SOLID), without this
+    class every time we need to move an actor but also add a basic message or functionality, we will need to create
+    a new class, and if we need to change this message or functionality then we need to modify said class, and none
+    of these classes will support extensions, but for this class we can give it the message or functionality in the
+    form of a signal, and if we want to change this signal, we don't need to touch a line of code in the class itself
+
+    it has an association with the following classes/interfaces:
+
+    SimpleFunction: the signal will be based on the SimpleFunction interface
+
+    Location: the class needs to store where the actor will be moved to
+
+
+SimpleFunction:
+    this is an interface that is used to define a basic function with no arguments and no return
+
+    no dependencies or associations
+
+
+

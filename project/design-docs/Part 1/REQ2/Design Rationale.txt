@@ -1,0 +1,23 @@
+
+JumpAction:
+    this is an action that the player can use when next to a HighGround, it will allow the player to jump to said
+    high ground (move to that ground) even if that ground type blocks actors, it is an action, so it inherits from
+    Action. it will need to move the player, so it needs to work with the Location class, so it will depend on it.
+    because of the method "public String execute(Actor actor, GameMap map)" that it inherits from Action and we
+    need to override, it will depend on Actor and GameMap
+
+
+HighGround:
+    the HighGround Class is an abstract class that is meant to be used by Ground types that require the player to jump
+    to them, it is meant meanly to make sure to follow the DRY principle.
+    because of the method "public ActionList allowableActions(Actor actor, Location location, String direction)" it will
+    need to depend on Actor, Location, Action and ActionList. the method will return an ActionList containing the
+    JumpAction, so it will need to depend on that as well
+
+
+SuperMushroom:
+    it is an item that if picked up, will allow the player to have a 100% jump chance (it has other effects but they
+    are not important for REQ2), we plan to make it give the player a status when consumed, so it won't depend or
+    associate with any class except for an Enum class. it will only inherit from Item because it will be an item
+    that the player can pick up and store in its inventory
+
